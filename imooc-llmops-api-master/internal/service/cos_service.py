@@ -89,10 +89,20 @@ class CosService:
     @classmethod
     def _get_client(cls) -> CosS3Client:
         """获取腾讯云cos对象存储客户端"""
+        cos_secret_id = os.getenv("COS_SECRET_ID")
+        cos_secret_key = os.getenv("COS_SECRET_KEY")
+        cos_region = os.getenv("COS_REGION")
+        
+        if not cos_secret_id or not cos_secret_key:
+            raise FailException("COS配置不完整，请设置COS_SECRET_ID和COS_SECRET_KEY环境变量")
+        
+        if not cos_region:
+            raise FailException("COS配置不完整，请设置COS_REGION环境变量")
+        
         conf = CosConfig(
-            Region=os.getenv("COS_REGION"),
-            SecretId=os.getenv("COS_SECRET_ID"),
-            SecretKey=os.getenv("COS_SECRET_KEY"),
+            Region=cos_region,
+            SecretId=cos_secret_id,
+            SecretKey=cos_secret_key,
             Token=None,
             Scheme=os.getenv("COS_SCHEME", "https")
         )
@@ -101,4 +111,7 @@ class CosService:
     @classmethod
     def _get_bucket(cls) -> str:
         """获取存储桶的名字"""
-        return os.getenv("COS_BUCKET")
+        bucket = os.getenv("COS_BUCKET")
+        if not bucket:
+            raise FailException("COS配置不完整，请设置COS_BUCKET环境变量")
+        return bucket
