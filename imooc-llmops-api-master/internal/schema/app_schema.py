@@ -71,7 +71,7 @@ class GetAppsWithPageResp(Schema):
         return {
             "id": data.id,
             "name": data.name,
-            "icon": data.icon,
+            "icon": data.icons,
             "description": data.description,
             "preset_prompt": app_config.preset_prompt,
             "model_config": {

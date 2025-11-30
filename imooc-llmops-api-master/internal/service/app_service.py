@@ -130,7 +130,7 @@ class AppService(BaseService):
             app = App(
                 account_id=account.id,
                 name=name,
-                icon=icon,
+                icons=icon,
                 description=description,
             )
             self.db.session.add(app)
@@ -160,7 +160,7 @@ class AppService(BaseService):
             app = App(
                 account_id=account.id,
                 name=req.name.data,
-                icon=req.icon.data,
+                icons=req.icon.data,
                 description=req.description.data,
                 status=AppStatus.DRAFT,
             )
