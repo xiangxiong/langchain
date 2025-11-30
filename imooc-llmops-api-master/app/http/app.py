@@ -5,6 +5,13 @@
 @Author  : thezehui@gmail.com
 @File    : app.py
 """
+
+
+import os
+import sys
+# Add project root to Python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
 import dotenv
 from flask_login import LoginManager
 from flask_migrate import Migrate

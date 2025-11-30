@@ -32,6 +32,4 @@
   description: Google Gemini模型，例如Gemini 1.5 Flash和Gemini 1.5 Pro。
   icon: icon.svg
   background: "#F9FAFB"
-  supported_model_types:
-    - chat
-    - completion
+  supported_model_types: []

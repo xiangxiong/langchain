@@ -21,8 +21,8 @@ class PasswordLoginReq(FlaskForm):
         Length(min=5, max=254, message="登录邮箱长度在5-254个字符"),
     ])
     password = StringField("password", validators=[
-        DataRequired("账号密码不能为空"),
-        regexp(regex=password_pattern, message="密码最少包含一个字母，一个数字，并且长度为8-16")
+        DataRequired("账号密码不能为空")
+        # regexp(regex=password_pattern, message="密码最少包含一个字母，一个数字，并且长度为8-16")
     ])
 
 

@@ -56,11 +56,10 @@ flask db upgrade
 
 ### 7. 运行应用
 ```bash
-python app/http/app.py
+pip install flask-migrate python-dotenv
+
 ```
 应用将运行在 `http://127.0.0.1:5000`。
-
----
 
 ## 常用服务访问
 *   **API 服务**: `http://localhost:5000`

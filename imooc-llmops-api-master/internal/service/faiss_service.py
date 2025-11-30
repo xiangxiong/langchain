@@ -27,20 +27,29 @@ class FaissService:
         """构造函数，完成Faiss向量数据库的初始化"""
         # 1.赋值embeddings_service
         self.embeddings_service = embeddings_service
+        self.faiss = None
 
-        # 2.获取internal路径并计算本地向量数据库的实际路径
-        internal_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        faiss_vector_store_path = os.path.join(internal_path, "core", "vector_store")
+        try:
+            # 2.获取internal路径并计算本地向量数据库的实际路径
+            internal_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            faiss_vector_store_path = os.path.join(internal_path, "core", "vector_store")
 
-        # 3.初始化faiss向量数据库
-        self.faiss = FAISS.load_local(
-            folder_path=faiss_vector_store_path,
-            embeddings=self.embeddings_service.embeddings,
-            allow_dangerous_deserialization=True,
-        )
+            # 3.初始化faiss向量数据库
+            self.faiss = FAISS.load_local(
+                folder_path=faiss_vector_store_path,
+                embeddings=self.embeddings_service.embeddings,
+                allow_dangerous_deserialization=True,
+            )
+        except Exception as e:
+            # 如果初始化失败，记录日志并将faiss设置为None，保证核心服务可以运行
+            print(f"Faiss向量数据库初始化失败: {e}")
 
     def convert_faiss_to_tool(self) -> BaseTool:
         """将Faiss向量数据库检索器转换成LangChain工具"""
+        # 如果faiss未初始化成功，返回None
+        if not self.faiss:
+            return None
+            
         # 1.将Faiss向量数据库转换成检索器
         retrieval = self.faiss.as_retriever(
             search_type="mmr",
