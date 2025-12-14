@@ -1,4 +1,8 @@
 # LLMOps API 接口文档
+```
+python3 app.py
+docker-compose up -d
+```
 
 # AI 应用模块
 * Python 3.8+

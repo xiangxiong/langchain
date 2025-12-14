@@ -15,3 +15,6 @@ from internal.core.workflow.entities.node_entity import BaseNodeData
 class BaseNode(RunnableSerializable, ABC):
     """工作流节点基类"""
     node_data: BaseNodeData
+    
+    class Config:
+        arbitrary_types_allowed = True

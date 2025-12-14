@@ -9,7 +9,7 @@ import os
 
 from injector import inject
 from langchain_community.vectorstores import FAISS
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from langchain_core.tools import BaseTool, tool
 
 from internal.core.agent.entities.agent_entity import DATASET_RETRIEVAL_TOOL_NAME

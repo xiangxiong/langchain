@@ -12,7 +12,7 @@ import sys
 # Add project root to Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
-import dotenv
+from dotenv import load_dotenv
 from flask_login import LoginManager
 from flask_migrate import Migrate
 
@@ -21,10 +21,10 @@ from internal.middleware import Middleware
 from internal.router import Router
 from internal.server import Http
 from pkg.sqlalchemy import SQLAlchemy
-from .module import injector
+from app.http.module import injector
 
 # 1.将env加载到环境变量中
-dotenv.load_dotenv()
+load_dotenv()
 
 # 2.构建LLMOps项目配置
 conf = Config()

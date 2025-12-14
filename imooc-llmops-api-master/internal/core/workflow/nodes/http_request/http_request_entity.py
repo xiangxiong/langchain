@@ -8,7 +8,7 @@
 from enum import Enum
 from typing import Optional
 
-from langchain_core.pydantic_v1 import Field, validator, HttpUrl
+from pydantic import Field, validator, HttpUrl
 
 from internal.core.workflow.entities.node_entity import BaseNodeData
 from internal.core.workflow.entities.variable_entity import VariableEntity, VariableType, VariableValueType
